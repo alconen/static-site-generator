@@ -68,7 +68,7 @@ def split_nodes_delimiter(old_nodes: list[TextNode], delimiter: str, text_type: 
         if i.text_type is not text_type_text:
             new_nodes.append(i)
         elif i.text.count(delimiter) % 2 != 0:
-            raise Exception("Invalid Syntax: Delimiter not closed")
+            raise Exception(f"Invalid Syntax: Delimiter not closed: {i}")
         else:
             split_nodes: list[TextNode] = []       
             split_text: list[str] = i.text.split(delimiter, 1)
