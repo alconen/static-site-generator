@@ -1,21 +1,19 @@
 import os
 import shutil
+from copystatic import copy_dir
 from textnode import TextNode
 from htmlnode import HTMLNode
 from htmlnode import LeafNode
-            
-def copy_dir(sourcePath: str, targetPath:str):
-    if not os.path.exists(sourcePath):
-        raise FileNotFoundError("Invalid file path")
-    if os.path.exists(targetPath):
-        shutil.rmtree(targetPath)
-    files: list[str] = os.listdir(sourcePath)
-    for i in files:
-        if os.path.isfile(os.path.join(sourcePath, i)):
-            shutil.copy(os.path.join(sourcePath, i), os.path.join(targetPath, i))
+
+sourcePath = "./static"
+targetPath = "./public"    
 
 def main():
-    copy_dir("./static", "./public")
-
+    print(f"Wiping {targetPath}")
+    if os.path.exists(targetPath):
+        shutil.rmtree(targetPath)
+    os.mkdir(targetPath)
+    print(f"Copying files from {sourcePath} to {targetPath}")
+    copy_dir(sourcePath, targetPath)
 
 main()
