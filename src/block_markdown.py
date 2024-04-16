@@ -102,7 +102,7 @@ def olist_block_to_html_node(block: str) -> HTMLNode:
     items: list[LeafNode] = []
     lines: list[str] = block.split("\n")
     for i in lines:
-        line = i[2:]
+        line = i[3:]
         children = text_to_children(line)
         items.append(ParentNode(children, "li"))
     return ParentNode(items, "ol")
